@@ -1,7 +1,7 @@
 //Block Linked List Data Structure Code 
 //Definition lives in the header 
 
-#pragma once; //make sure the file is only compiled once in here 
+#pragma once //make sure the file is only compiled once in here 
 #include <iostream>
 #include <vector>
 #include <string>
@@ -31,29 +31,55 @@ class BlockList{
             return head == NULL; 
         }
 
-        bool insert(std::vector<std::uint8_t> &byteArray){ //insert at the end of teh array 
+        bool insert(std::vector<std::uint8_t> &byteArray, int index, int heapsize){ //insert at the end of teh array 
             //NOTE that the location is not the location in the linked list
             //it is the location in the giant heap table.  
-            
+            //first fit allocation
             //initialize the node
+
+
             temp = new Block; 
             temp -> block_size = byteArray.size(); 
             temp -> is_occupied = true; 
             temp -> data = byteArray; 
             //data of the node 
-
-
-            if (isEmpty()){
+            Block* curr = head;
+            Block* prev = NULL; 
+ 
+            if (isEmpty() ){
                 temp->next = NULL; 
                 head = temp; 
                 tail = temp; 
-            } else {
-                tail->next = temp; //insert at the end of the linked lst
-                tail = temp; 
+            } else if (index == 0) {
+                temp -> next = head; 
+                head = temp; 
+            }
+            
+            else {
+                //implementing first fit allocation
+                
+
+                for(int i = 0; i <= index; i++) {
+                    if(i == index){
+                        if(curr -> next == NULL){
+                            curr -> next = temp; 
+                            tail = temp; 
+                        } else {
+                            prev -> next = temp; 
+                            temp -> next = curr;
+                        }
+
+                    } else if ((i < index) && (curr -> next == NULL)){
+                        return false; 
+                    } else {
+                        prev = curr; 
+                        curr = curr -> next;
+                    }
+                }
 
             }
 
-
+            return false;
 
         }    
 
