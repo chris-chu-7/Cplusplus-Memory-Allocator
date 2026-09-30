@@ -10,6 +10,8 @@ int main() {
     std::vector<std::uint8_t> data_packet  = {0xAB, 0xCD, 0xEF, 0x27};
     BlockList *test_link_list = new BlockList;
 
-    test_link_list->insert(data_packet); 
+    test_link_list->insert(data_packet, 0, 5);
+    
+    test_link_list->printList();
 
 }

@@ -105,6 +105,23 @@ class BlockList{
             
         }
 
+        void printList(){
+            Block* tempBlock = head; 
+            while(temp != NULL) {
+                printf("Block Address: %d ", &tempBlock );
+                printf("     Data: %d ", &tempBlock );
+
+                tempBlock = tempBlock -> next; 
+                printf("------------->\n");
+
+            }
+        }
+
+
+        void printData(std::vector<std::uint8_t> &data){
+            
+
+        }
 
 
 };
