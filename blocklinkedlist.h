@@ -6,13 +6,14 @@ struct Header{
     size_t size;
     bool is_free;
     Header *next;
+    uint8_t start_address;
 };
 
 class LinkedList {
     public: 
         Header head;
         LinkedList(Header* front, size_t size); 
-        void insert(Header* node); 
+        void insert(Header* node, uint8_t start_address, size_t size); 
         void remove(uint8_t index);
         void coalesce();
         void printList(); 
