@@ -42,7 +42,44 @@ void LinkedList::insert(Header* node){
 }
 
 void LinkedList::remove(uint8_t index){
+    //index represents the address
+    Header* curr = head; 
+    Header* prev = head; 
+    Header* to_delete = head; //performing memory management 
+    
+    while(curr -> start_address != index && curr -> next != nullptr){
+        prev = curr; 
+        curr = curr -> next;
+    }
 
+    //edge case 1: remove head node
+    if (curr == head) {
+        to_delete = curr;
+        curr = curr -> next;
+        head = curr; 
+        delete to_delete; 
+        return;
+    }
+
+    //edge case 2: remove last node
+    if(curr -> next == nullptr) {
+        to_delete = curr;
+        curr = prev; 
+        delete to_delete; 
+        curr -> next = nullptr;
+        return; 
+    }
+
+    //edge case 3: not found 
+    if(curr -> start_address != index) {
+        return;
+    } else {
+    //standard case: remove node in the middle of the linked list. 
+        to_delete = curr;
+        prev -> next = prev -> next -> next; 
+        delete to_delete; 
+        curr = prev -> next; 
+    }
 
 }
 
