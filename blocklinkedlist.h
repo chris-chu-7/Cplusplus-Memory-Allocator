@@ -11,9 +11,9 @@ struct Header{
 
 class LinkedList {
     public: 
-        Header head;
+        Header *head;
         LinkedList(Header* front, size_t size); 
-        void insert(Header* node, uint8_t start_address, size_t size); 
+        void insert(Header* node); 
         void remove(uint8_t index);
         void coalesce();
         void printList(); 
