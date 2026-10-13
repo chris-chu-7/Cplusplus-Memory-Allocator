@@ -1,4 +1,5 @@
 #include "blocklinkedlist.h"
+#include <iostream>
 
 LinkedList::LinkedList(Header* front, size_t size){
     //The constructor for a new linked list 
@@ -89,7 +90,15 @@ void LinkedList::coalesce() {
 }
 
 void LinkedList::printList(){
+    //print out all the elements of the linked list 
+    Header* curr = head; 
+    Header* prev = head; 
 
-
-
+    while(curr != nullptr) {
+        std::cout << curr -> start_address << " | " <<  curr -> size << " | " <<  curr -> is_free  << " | " << "------>";
+        curr = curr -> next;
+    }
 }
+
+
+
