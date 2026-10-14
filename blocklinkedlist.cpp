@@ -1,13 +1,14 @@
 #include "blocklinkedlist.h"
 #include <iostream>
+#include <cstdint>
 
-LinkedList::LinkedList(Header* front, size_t size){
+LinkedList::LinkedList(Header* front, size_t size, uint8_t start_address, bool is_free){
     //The constructor for a new linked list 
     head = front; // front is the contents of it   
     front -> size = size;
     front -> next = NULL;
-    front -> start_address = 0x00;
-    front -> is_free = true; 
+    front -> start_address = start_address;
+    front -> is_free = is_free; 
 }
 
 void LinkedList::insert(Header* node){
@@ -89,15 +90,23 @@ void LinkedList::coalesce() {
 
 }
 
+
+
+
 void LinkedList::printList(){
     //print out all the elements of the linked list 
     Header* curr = head; 
-    Header* prev = head; 
 
     while(curr != nullptr) {
-        std::cout << curr -> start_address << " | " <<  curr -> size << " | " <<  curr -> is_free  << " | " << "------>";
+        std::cout << " | Starting Address: " << curr -> start_address << " | ";
+        std::cout  << " | Block Size: "  << curr -> size << " | " ;
+        std::cout << " | Is Free: " << curr -> is_free  << " | ";
+        if (curr -> next != nullptr) {
+            std::cout << " ========> ";
+        }
         curr = curr -> next;
     }
+    std::cout << "\n";
 }
 
 

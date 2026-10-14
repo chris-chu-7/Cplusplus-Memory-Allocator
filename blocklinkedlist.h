@@ -1,3 +1,4 @@
+#include <cstdint>
 #pragma once //ensure that every time a cpp file is compiled .h file copy pasted only once 
 #include <string>
 #include <vector>
@@ -12,7 +13,7 @@ struct Header{
 class LinkedList {
     public: 
         Header *head;
-        LinkedList(Header* front, size_t size); 
+        LinkedList(Header* front, size_t size, uint8_t start_address, bool is_free); 
         void insert(Header* node); 
         void remove(uint8_t index);
         void coalesce();
