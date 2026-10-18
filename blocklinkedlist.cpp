@@ -64,7 +64,7 @@ void LinkedList::remove(uint8_t index){
     }
 
     //edge case 2: remove last node
-    if(curr -> next == nullptr) {
+    if(curr -> start_address == index && curr -> next == nullptr) {
         to_delete = curr;
         curr = prev; 
         delete to_delete; 
@@ -74,6 +74,7 @@ void LinkedList::remove(uint8_t index){
 
     //edge case 3: not found 
     if(curr -> start_address != index) {
+        std::cout << "Block with the Address " << std::hex << static_cast<int> (index) << " not found. Exiting remove() function.";
         return;
     } else {
     //standard case: remove node in the middle of the linked list. 
@@ -87,6 +88,7 @@ void LinkedList::remove(uint8_t index){
 
 void LinkedList::coalesce() {
 
+    
 
 }
 
@@ -98,9 +100,9 @@ void LinkedList::printList(){
     Header* curr = head; 
 
     while(curr != nullptr) {
-        std::cout << " | Starting Address: " << curr -> start_address << " | ";
-        std::cout  << " | Block Size: "  << curr -> size << " | " ;
-        std::cout << " | Is Free: " << curr -> is_free  << " | ";
+        std::cout << " | Starting Address 0x" << std::hex << static_cast<int> (curr -> start_address) << " | ";
+        std::cout  << " | Block Size: "  << std::dec << curr -> size << " | " ;
+        std::cout << " | Is Free: " << std::boolalpha << curr -> is_free  << " | ";
         if (curr -> next != nullptr) {
             std::cout << " ========> ";
         }
