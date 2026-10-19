@@ -16,7 +16,7 @@ class LinkedList {
         LinkedList(Header* front, size_t size, uint8_t start_address, bool is_free); 
         void insert(Header* node); 
         void remove(uint8_t index);
-        void coalesce();
+        void mergeBlocks();
         void printList(); 
 
 

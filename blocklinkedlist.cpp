@@ -86,9 +86,31 @@ void LinkedList::remove(uint8_t index){
 
 }
 
-void LinkedList::coalesce() {
+void LinkedList::mergeBlocks() {
+    //implementing coalescing : When a block is freed, merge it with adjacent free blocks to fight fragementation. 
+    //this is the skeleton function to implement coalescing. 
 
-    
+    std::cout << "merging blocks... \n  ";
+    Header* curr = head; 
+    Header* first = nullptr;
+    Header* second = nullptr; 
+
+    while (curr != nullptr && curr -> next != nullptr) {
+        //maintain 2 pointers 
+        first = curr; 
+        second = curr -> next; 
+
+        //check if they are consecutive free blocks if they are, merge the blocks 
+        if (first -> is_free && second -> is_free) {
+            first -> size = first -> size + second -> size; 
+            remove(second -> start_address);
+        }
+
+        curr = curr -> next;
+    } 
+
+    std::cout << "merged. \n  ";
+
 
 }
 
