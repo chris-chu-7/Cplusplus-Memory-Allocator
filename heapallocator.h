@@ -4,10 +4,10 @@
 namespace HA
 {
 
-    typedef std::vector<std::uint8_t> heap_region; 
-
     class heapallocator {
-        public: 
+        public:
+
+            static unsigned char buffer[4096];
             
             void my_malloc(size_t size); 
             void my_free(void* ptr);
