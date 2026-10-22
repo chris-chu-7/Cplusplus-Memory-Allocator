@@ -22,7 +22,7 @@ class LinkedList {
         void remove(uint16_t index);
         void mergeBlocks();
         void printList(); 
-        uint16_t LinkedList::findFirstFit(int list_size);
-
+        uint16_t findFirstFit(int list_size);
+        bool doesBlockExist(uint16_t start_address);
 
 };

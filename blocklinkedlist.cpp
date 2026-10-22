@@ -54,12 +54,17 @@ void LinkedList::remove(uint16_t index){
         curr = curr -> next;
     }
 
+    if(curr -> start_address != index) {
+        std::cout << "Block not found.";
+        return;
+    }
+
     //edge case 1: remove head node
     if (curr == head) {
         to_delete = curr;
         curr = curr -> next;
         head = curr; 
-        delete to_delete; 
+        delete to_delete; //memory management 
         return;
     }
 
@@ -131,7 +136,20 @@ uint16_t LinkedList::findFirstFit(int list_size) {
     return -1; 
 }
 
+bool LinkedList::doesBlockExist(uint16_t start_address) {
 
+    Header* curr = head; 
+    while(curr != nullptr) {
+            // if the size is greater than padding + data size return the index 
+            if((curr -> is_free == true) && (curr -> start_address == start_address)){
+                return true;
+            }
+            curr = curr-> next;
+    }
+
+    return false; 
+
+}
 
 
 void LinkedList::printList(){
