@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cstdint>
 
-LinkedList::LinkedList(Header* front, size_t size, uint8_t start_address, bool is_free){
+LinkedList::LinkedList(Header* front, size_t size, uint16_t start_address, bool is_free){
     //The constructor for a new linked list 
     head = front; // front is the contents of it   
     front -> size = size;
@@ -19,7 +19,7 @@ void LinkedList::insert(Header* node){
         head = node; 
         return; 
     }
-    uint8_t address = node -> start_address; 
+    uint16_t address = node -> start_address; 
 
     //initialize a pointer to traverse the list starting from the head 
     Header* curr = head; 
@@ -43,7 +43,7 @@ void LinkedList::insert(Header* node){
 
 }
 
-void LinkedList::remove(uint8_t index){
+void LinkedList::remove(uint16_t index){
     //index represents the address
     Header* curr = head; 
     Header* prev = head; 
@@ -112,6 +112,23 @@ void LinkedList::mergeBlocks() {
     std::cout << "merged. \n  ";
 
 
+}
+
+uint16_t LinkedList::findFirstFit(int list_size) {
+    //Returns the index with the free element able to fit the linked list 
+    std::cout << "Finding First Block that fits ... \n  ";
+
+    Header* curr = head; 
+    while(curr != nullptr) {
+        // if the size is greater than padding + data size return the index 
+        if((curr -> is_free == true) && (curr -> size > (sizeof(Header) + list_size))){
+            return curr->start_address;
+        }
+        curr = curr-> next;
+
+    }
+
+    return -1; 
 }
 
 
