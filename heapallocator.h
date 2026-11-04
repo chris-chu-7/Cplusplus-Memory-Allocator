@@ -1,5 +1,6 @@
 #include <cstdint>
 #include <vector>
+#include "blocklinkedlist.h"
 
 namespace HA
 {

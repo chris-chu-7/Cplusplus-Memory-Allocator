@@ -5,7 +5,6 @@
 
 
 
-LinkedList *buffer_list;
 
 //constructor that initializes the block 
 namespace HA{
@@ -13,6 +12,7 @@ namespace HA{
     size_t front_size = 4096; 
     uint16_t front_start_address = 0x00; 
     bool front_list_is_free = 1; 
+    LinkedList *buffer_list = new LinkedList(front, front_size, front_start_address,  front_list_is_free);
 }
 
 void HA::heapallocator::my_malloc(size_t size) {
@@ -33,6 +33,7 @@ void HA::heapallocator::my_malloc(size_t size) {
 
 
     std::cout << "Block of size " << size << " successfully allocated. \n";
+    buffer_list -> printList();
 
 }
 
@@ -57,5 +58,8 @@ void HA::heapallocator::my_free(uint16_t ptr) {
         std::cout << "Not able to free memory. Exiting method now.  \n";
 
     }
+    
+    buffer_list -> printList();
+
 
 }
