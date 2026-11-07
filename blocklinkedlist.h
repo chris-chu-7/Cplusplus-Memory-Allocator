@@ -1,5 +1,6 @@
-#include <cstdint>
 #pragma once //ensure that every time a cpp file is compiled .h file copy pasted only once 
+//first line of the code
+#include <cstdint>
 #include <string>
 #include <vector>
 
