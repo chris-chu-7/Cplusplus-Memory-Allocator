@@ -16,18 +16,21 @@ namespace HA{
 }
 
 void HA::heapallocator::my_malloc(size_t size) {
+    buffer_list -> printList();
     std::cout << "Allocating " << std::dec << size << " bytes from buffer array... \n";
     unsigned long header_size = sizeof(Header);
 
     //allocation logic
     //Implement first fit allocation -> find the first node in the linked list with a free size
     uint16_t first_fit_index = buffer_list -> findFirstFit(size);
-
+    std :: cout << "First fit index " << static_cast<std::int16_t>(first_fit_index) << "\n\n\n";
     //element to insert
     Header *node = new Header(); 
     node -> is_free = false;
     node -> size = size + sizeof(Header);
     node -> start_address = first_fit_index;
+
+    std :: cout << "Start Address " << static_cast<std::int16_t>(node -> start_address) << "\n\n\n";
 
     buffer_list -> insert(node);
 

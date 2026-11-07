@@ -9,6 +9,7 @@ LinkedList::LinkedList(Header* front, size_t size, uint16_t start_address, bool 
     front -> next = NULL;
     front -> start_address = start_address;
     front -> is_free = is_free; 
+
 }
 
 void LinkedList::insert(Header* node){
@@ -124,6 +125,11 @@ uint16_t LinkedList::findFirstFit(int list_size) {
     std::cout << "Finding First Block that fits ... \n  ";
 
     Header* curr = head; 
+  
+    if ((curr ->next == nullptr) && (curr -> is_free == true)) {
+        return curr -> start_address;
+    }
+
     while(curr != nullptr) {
         // if the size is greater than padding + data size return the index 
         if((curr -> is_free == true) && (curr -> size > (sizeof(Header) + list_size))){
