@@ -16,9 +16,11 @@ namespace HA{
 }
 
 void HA::heapallocator::my_malloc(size_t size) {
-    buffer_list -> printList();
+
     std::cout << "Allocating " << std::dec << size << " bytes from buffer array... \n";
     unsigned long header_size = sizeof(Header);
+
+    std::cout << "[TRACKING] my_malloc is running using buffer_list address: " << HA::buffer_list << "\n";
 
     //allocation logic
     //Implement first fit allocation -> find the first node in the linked list with a free size

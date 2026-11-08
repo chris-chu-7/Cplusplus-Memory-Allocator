@@ -124,11 +124,14 @@ uint16_t LinkedList::findFirstFit(int list_size) {
     //Returns the index with the free element able to fit the linked list 
     std::cout << "Finding First Block that fits ... \n  ";
 
+    std::cout << "[TRACKING] findFirstFit is executing inside LinkedList address: " << this << "\n";
     Header* curr = head; 
-  
+  /*
     if ((curr ->next == nullptr) && (curr -> is_free == true)) {
         return curr -> start_address;
     }
+    */
+
 
     while(curr != nullptr) {
         // if the size is greater than padding + data size return the index 
