@@ -7,12 +7,12 @@
 
 
 //constructor that initializes the block 
-namespace HA{
+HA::heapallocator::heapallocator(){
     Header *front  = new Header();
     size_t front_size = 4096; 
     uint16_t front_start_address = 0x00; 
     bool front_list_is_free = 1; 
-    LinkedList *buffer_list = new LinkedList(front, front_size, front_start_address,  front_list_is_free);
+    buffer_list = new ::LinkedList(front, front_size, front_start_address,  front_list_is_free);
 }
 
 void HA::heapallocator::my_malloc(size_t size) {
@@ -20,13 +20,14 @@ void HA::heapallocator::my_malloc(size_t size) {
     std::cout << "Allocating " << std::dec << size << " bytes from buffer array... \n";
     unsigned long header_size = sizeof(Header);
 
-    std::cout << "[TRACKING] my_malloc is running using buffer_list address: " << HA::buffer_list << "\n";
+    std::cout << "[TRACKING] my_malloc is running using buffer_list address: " << buffer_list << "\n";
 
     //allocation logic
     //Implement first fit allocation -> find the first node in the linked list with a free size
     uint16_t first_fit_index = buffer_list -> findFirstFit(size);
     std :: cout << "First fit index " << static_cast<std::int16_t>(first_fit_index) << "\n\n\n";
     //element to insert
+
     Header *node = new Header(); 
     node -> is_free = false;
     node -> size = size + sizeof(Header);
